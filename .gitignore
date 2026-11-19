@@ -1,0 +1,12 @@
+**/bin/
+**/obj/
+**/data/
+**/uploads/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.vs/
+*.user
+*.suo

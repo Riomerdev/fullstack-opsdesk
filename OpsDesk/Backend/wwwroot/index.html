@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>OpsDesk | Mesa de servicio</title><link rel="stylesheet" href="/styles.css"></head>
+<body>
+<header><a class="brand" href="/">OPS<span>DESK</span></a><div><span class="live-dot"></span> Operaciones en vivo</div></header>
+<main>
+  <section class="hero"><div><p class="eyebrow">SERVICE OPERATIONS</p><h1>Una cola clara para cada equipo.</h1><p>Prioriza solicitudes, da seguimiento a los compromisos SLA y deja un historial de cada cambio.</p></div><div class="hero-mark">OD</div></section>
+  <section class="metrics" aria-label="Resumen"><article><span>Tickets abiertos</span><strong id="open-count">—</strong></article><article><span>Fuera de SLA</span><strong id="overdue-count">—</strong></article><article><span>Último cálculo Python</span><strong id="metric-time">Esperando worker</strong></article></section>
+  <div class="layout"><section class="panel"><div class="section-head"><div><p class="eyebrow">WORK QUEUE</p><h2>Solicitudes</h2></div><div class="filters"><label>Estado <select id="status-filter"><option value="">Todos</option><option value="new">Nuevo</option><option value="in_progress">En curso</option><option value="resolved">Resuelto</option></select></label><button id="refresh">Actualizar</button></div></div><div id="tickets" class="ticket-list" aria-live="polite"></div></section>
+  <aside class="panel create"><p class="eyebrow">NUEVA SOLICITUD</p><h2>Crear ticket</h2><form id="ticket-form"><label>Título<input name="title" required maxlength="120" placeholder="Ej. Acceso al panel de inventario"></label><label>Solicitante<input name="requester" required maxlength="80" placeholder="Nombre o equipo"></label><label>Categoría<input name="category" required maxlength="50" placeholder="Acceso, hardware, datos..."></label><label>Prioridad<select name="priority"><option value="normal">Normal · 24 h</option><option value="high">Alta · 4 h</option><option value="critical">Crítica · 1 h</option></select></label><button class="primary">Registrar solicitud</button><p id="notice" role="status"></p></form></aside></div>
+</main><script src="/app.js" defer></script>
+</body></html>
