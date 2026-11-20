@@ -6,10 +6,11 @@ Dos casos de negocio que integran los tres lenguajes del portafolio. Cada carpet
 |---|---|---|---|
 | [OpsDesk](OpsDesk/README.md) | Panel de tickets y SLA | API de solicitudes e historial | Métricas SLA y reintentos |
 | [SupplyChain Control Tower](SupplyChain/README.md) | Panel de despacho | API de envíos y eventos | Riesgo ETA explicable |
+| [Modern Ops Suite](ModernOpsSuite/README.md) | Control de compras | API de órdenes | Snapshots de atraso y vencimiento |
 
 ## Requisitos
 
-.NET 10 SDK, Python 3.10+ y un navegador moderno. No hace falta instalar paquetes Node o Python. Los pasos de cada app están en su propio README. GitHub Actions compila las APIs y comprueba la sintaxis de los scripts al actualizar main o abrir un pull request.
+Docker Desktop con Compose v2. Inicia Modern Ops Suite desde ModernOpsSuite con docker compose up --build; los pasos para ejecutar OpsDesk y SupplyChain localmente permanecen en sus guías. No hace falta instalar paquetes Node o Python. Los pasos de cada app están en su propio README. GitHub Actions compila las APIs y comprueba la sintaxis de los scripts al actualizar main o abrir un pull request.
 
 ## Criterios comunes
 

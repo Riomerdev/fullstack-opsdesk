@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: supplyops
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your local .env file}
+    volumes:
+      - supplyops-db:/var/lib/postgresql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/001_init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio -d supplyops"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  api:
+    build: ./Api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Operations: Host=db;Port=5432;Database=supplyops;Username=portfolio;Password=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your local .env file}
+      METRICS_WRITE_TOKEN: ${METRICS_WRITE_TOKEN:?Set METRICS_WRITE_TOKEN in your local .env file}
+    ports:
+      - "5081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+  worker:
+    build: ./Worker
+    environment:
+      API_BASE_URL: http://api:8080
+      METRICS_WRITE_TOKEN: ${METRICS_WRITE_TOKEN:?Set METRICS_WRITE_TOKEN in your local .env file}
+      POLL_INTERVAL_SECONDS: 30
+    depends_on:
+      api:
+        condition: service_started
+volumes:
+  supplyops-db:

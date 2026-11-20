@@ -24,9 +24,11 @@ jobs:
         run: |
           dotnet build OpsDesk/Backend/OpsDesk.Api.csproj --configuration Release
           dotnet build SupplyChain/Backend/SupplyChain.Api.csproj --configuration Release
+          dotnet build ModernOpsSuite/Api/ModernOpsSuite.Api.csproj --configuration Release
       - name: Check worker syntax
-        run: python -m compileall -q OpsDesk/Worker SupplyChain/Worker
+        run: python -m compileall -q OpsDesk/Worker SupplyChain/Worker ModernOpsSuite/Worker
       - name: Check browser JavaScript syntax
         run: |
           node --check OpsDesk/Backend/wwwroot/app.js
           node --check SupplyChain/Backend/wwwroot/app.js
+          node --check ModernOpsSuite/Api/wwwroot/app.js
